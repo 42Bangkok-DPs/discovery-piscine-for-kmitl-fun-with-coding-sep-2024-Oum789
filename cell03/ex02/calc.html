@@ -29,7 +29,7 @@
         var r_val = Number(document.getElementById("right").value);
         var op = document.getElementById("op").value;
         var result = 0;
-        if (l_val < 0 && r_val < 0){
+        if (l_val < 0 || r_val < 0){
             alert("Error :(");
             return;
         }
