@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #container{
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        #balloon{
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+    <div id = "container">
+        <div id ="balloon" onclick="grow()" onmouseleave="shrink()">
+        </div>
+    </div>
+
+</body>
+<script>
+    let color = ["red", "green", "blue"];
+    let balloon = document.getElementById("balloon");
+    let c_flag = 0
+    function grow() {
+        var ball_style = window.getComputedStyle(balloon);
+        h = parseInt(ball_style.height);
+        w = parseInt(ball_style.width);
+        if (h <= 420 && w <= 420){
+            h = h + 10;
+            balloon.style.height = h + "px";
+            w = w + 10;
+            balloon.style.width = w + "px";            
+        }
+        else {
+            balloon.style.height = 200 + "px";
+            balloon.style.width = 200 + "px";   
+        }
+        c_flag = c_flag + 1;
+        if (c_flag > 2) {
+            c_flag = 0;
+        }
+        balloon.style.backgroundColor = color[c_flag];
+    }
+    function shrink(){
+        var ball_style = window.getComputedStyle(balloon);
+        h = parseInt(ball_style.height);
+        w = parseInt(ball_style.width);
+        if (h - 5 >= 200 && w - 5 >= 200) {
+            h = h - 5;
+            balloon.style.height = h + "px";
+            w = w - 5;
+            balloon.style.width = w + "px";    
+        }
+        c_flag = c_flag - 1;
+        if (c_flag < 0) {
+            c_flag = 2;
+        }
+        balloon.style.backgroundColor = color[c_flag];
+    }
+
+</script>
+</html>
