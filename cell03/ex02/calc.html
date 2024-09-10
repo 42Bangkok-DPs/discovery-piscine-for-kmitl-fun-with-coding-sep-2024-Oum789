@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+    </style>
+    <title></title>
+</head>
+<body>
+
+<input type="number" id="left">
+<label for="op">operator</label>
+<select id="op" name="cars">
+  <option value="+">+</option>
+  <option value="-">-</option>
+  <option value="*">*</option>
+  <option value="/">/</option>
+  <option value="%">%</option>
+</select>    
+<input type="number" id="right">
+<button type="button" id="btn">Try me!</button>
+</body>
+<script>
+    const btn = document.querySelector('#btn');
+    btn.addEventListener('click', () => {
+        var l_val = Number(document.getElementById("left").value);
+        var r_val = Number(document.getElementById("right").value);
+        var op = document.getElementById("op").value;
+        var result = 0;
+        if (l_val < 0 && r_val < 0){
+            alert("Error :(");
+            return;
+        }
+        switch (op) {
+        case "+":
+            result = l_val + r_val;
+            break;
+        case "-":
+            result = l_val - r_val;
+            break;
+        case "*":
+            result = l_val * r_val;
+            break;
+        case "/":
+            if (r_val == 0){
+                alert("It's over 9000!")
+                console.log("It's over 9000!")
+                return;
+            }
+            else{
+                result = l_val / r_val;
+            }
+            break;
+        case "%":
+            if (r_val == 0){
+                alert("It's over 9000!")
+                console.log("It's over 9000!")
+                return;
+            }
+            else{
+                result = l_val % r_val;
+            }
+            break;
+        }
+        alert(result);
+        console.log(result);
+    });
+    setInterval(function() {
+    alert("Please, use me...");
+    }, 30000);
+</script>
+</html>
