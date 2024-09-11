@@ -35,7 +35,7 @@
         var ball_style = window.getComputedStyle(balloon);
         h = parseInt(ball_style.height);
         w = parseInt(ball_style.width);
-        if (h <= 420 && w <= 420){
+        if (h + 10 <= 420 && w + 10 <= 420){
             h = h + 10;
             balloon.style.height = h + "px";
             w = w + 10;
