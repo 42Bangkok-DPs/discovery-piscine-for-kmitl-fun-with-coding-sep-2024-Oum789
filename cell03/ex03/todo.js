@@ -1,5 +1,7 @@
 const TDL = document.getElementById("ft_list");
 
+window.addEventListener("load",loadTDs);
+
 function saveTDs() {
     const tds = document.querySelectorAll("#ft_list .TD");
     const tdArray = Array.from(tds).map(td => td.innerText);
@@ -41,7 +43,6 @@ document.addEventListener('click', function(e) {
     }
 }, false);
 
-window.addEventListener('load', loadTDs);
 
 
 
