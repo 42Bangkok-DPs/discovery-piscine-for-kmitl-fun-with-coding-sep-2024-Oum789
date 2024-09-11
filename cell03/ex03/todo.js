@@ -24,7 +24,7 @@ function loadTDs() {
 
 document.getElementById("btn").addEventListener("click", function() {
     let TDM = prompt("Please enter your TD");
-    if (TDM != null) {
+    if (TDM != null && TDM != "") {
         const TD = document.createElement("div");
         TD.innerText = TDM;
         TD.classList.add("TD");
