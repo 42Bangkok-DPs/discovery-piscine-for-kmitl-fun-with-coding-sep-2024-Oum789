@@ -3,14 +3,15 @@ $(document).ready(function() {
         const tdArray = $('#ft_list .TD').map(function() {
             return $(this).text();
         }).get();
-        document.cookie = `tds=${JSON.stringify(tdArray)}; path=/`;
+        document.cookie = `tds=${JSON.stringify(tdArray)}`;
+        console.log(document.cookie);
     }
 
     function loadTDs() {
-        const cookies = document.cookie.split('; ');
-        const tdsCookie = cookies.find(cookie => cookie.startsWith('tds='));
-        if (tdsCookie) {
-            const tdArray = JSON.parse(tdsCookie.split('=')[1]);
+        const cookies = document.cookie;
+        console.log(cookies);
+        if (cookies) {
+            const tdArray = JSON.parse(cookies.split('=')[1]);
             tdArray.forEach(tdText => {
                 const $TD = $('<div>').text(tdText).addClass('TD');
                 $('#ft_list').append($TD);
@@ -34,6 +35,5 @@ $(document).ready(function() {
         }
     });
 
-    // Load TDs when the page is ready
     loadTDs();
 });
