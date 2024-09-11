@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        
+    </style>
+    <title>Calculator</title>
+</head>
+<body>
+
+<input type="text" id="left">
+<label for="op">operator</label>
+<select id="op" name="cars">
+  <option value="+">+</option>
+  <option value="-">-</option>
+  <option value="*">*</option>
+  <option value="/">/</option>
+  <option value="%">%</option>
+</select>    
+<input type="text" id="right">
+<button type="button" id="btn">Try me!</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#btn').click(function() {
+            var l_val = Number($('#left').val());
+            var r_val = Number($('#right').val());
+            var op = $('#op').val();
+            var result = 0;
+            
+            if (l_val < 0 || r_val < 0 || isNaN(l_val + r_val)) {
+                alert("Error :(");
+                return;
+            }
+            
+            switch (op) {
+                case "+":
+                    result = l_val + r_val;
+                    break;
+                case "-":
+                    result = l_val - r_val;
+                    break;
+                case "*":
+                    result = l_val * r_val;
+                    break;
+                case "/":
+                    if (r_val == 0) {
+                        alert("It's over 9000!");
+                        console.log("It's over 9000!");
+                        return;
+                    } else {
+                        result = l_val / r_val;
+                    }
+                    break;
+                case "%":
+                    if (r_val == 0) {
+                        alert("It's over 9000!");
+                        console.log("It's over 9000!");
+                        return;
+                    } else {
+                        result = l_val % r_val;
+                    }
+                    break;
+            }
+            alert(result);
+            console.log(result);
+        });
+
+        setInterval(function() {
+            alert("Please, use me...");
+        }, 30000);
+    });
+</script>
+</body>
+</html>
