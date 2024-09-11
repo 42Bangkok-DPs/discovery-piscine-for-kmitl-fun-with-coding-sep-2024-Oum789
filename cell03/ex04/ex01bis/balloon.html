@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #container {
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        #balloon {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Balloon</title>
+</head>
+<body>
+    <div id="container">
+        <div id="balloon"></div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            let color = ["red", "green", "blue"];
+            let c_flag = 0;
+            
+            $("#balloon").on("click", function() {
+                let balloon = $(this);
+                let height = parseInt(balloon.css("height"));
+                let width = parseInt(balloon.css("width"));
+                
+                if (height <= 420 && width <= 420) {
+                    height += 10;
+                    width += 10;
+                } else {
+                    height = 200;
+                    width = 200;
+                }
+                
+                balloon.css({
+                    "height": height + "px",
+                    "width": width + "px",
+                    "background-color": color[c_flag]
+                });
+                
+                c_flag = (c_flag + 1) % color.length;
+            });
+            
+            $("#balloon").on("mouseleave", function() {
+                let balloon = $(this);
+                let height = parseInt(balloon.css("height"));
+                let width = parseInt(balloon.css("width"));
+                
+                if (height - 5 >= 200 && width - 5 >= 200) {
+                    height -= 5;
+                    width -= 5;
+                }
+                
+                balloon.css({
+                    "height": height + "px",
+                    "width": width + "px",
+                    "background-color": color[(c_flag - 1 + color.length) % color.length]
+                });
+                
+                c_flag = (c_flag - 1 + color.length) % color.length;
+            });
+        });
+    </script>
+</body>
+</html>
