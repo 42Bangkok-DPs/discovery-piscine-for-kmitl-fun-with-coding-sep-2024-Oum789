@@ -5,14 +5,18 @@ window.addEventListener("load",loadTDs);
 function saveTDs() {
     const tds = document.querySelectorAll("#ft_list .TD");
     const tdArray = Array.from(tds).map(td => td.innerText);
-    document.cookie = `tds=${JSON.stringify(tdArray)}; path=/`;
+    document.cookie = `tds=${encodeURIComponent(JSON.stringify(tdArray))}`;
+    console.log(document.cookie);
 }
 
 function loadTDs() {
-    const cookies = document.cookie.split('; ');
-    const tdsCookie = cookies.find(cookie => cookie.startsWith('tds='));
-    if (tdsCookie) {
-        const tdArray = JSON.parse(tdsCookie.split('=')[1]);
+    const cookies = document.cookie.split("=")[1];
+    console.log(cookies);
+    de_cookie = decodeURIComponent(cookies);
+    console.log(de_cookie);
+    if (de_cookie) {
+        var tdArray = JSON.parse(de_cookie);
+        tdArray.reverse();
         tdArray.forEach(tdText => {
             const TD = document.createElement("div");
             TD.innerText = tdText;
@@ -21,6 +25,7 @@ function loadTDs() {
         });
     }
 }
+
 
 document.getElementById("btn").addEventListener("click", function() {
     let TDM = prompt("Please enter your TD");
@@ -42,7 +47,6 @@ document.addEventListener('click', function(e) {
         }
     }
 }, false);
-
 
 
 
